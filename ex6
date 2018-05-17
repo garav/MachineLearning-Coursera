@@ -1,0 +1,22 @@
+import pandas as pd
+import scipy.io
+import matplotlib.pyplot as plt
+import numpy as np
+mat = scipy.io.loadmat("C:\\Users\\gaurav.jain\\Downloads\\machine-learning-ex6\\machine-learning-ex6\\ex6\\ex6data1.mat")
+#print(mat)
+SVM = pd.DataFrame(mat['X'], columns=['X1','X2'])
+X = np.array(SVM)
+
+X1 = X[:,0]
+X2 = X[:,1]
+y = pd.DataFrame(mat['y'], columns=['Y'])
+
+z = pd.concat((SVM,y), axis=1)
+print(z['Y'])
+print(z.loc[z['Y']==0])
+z0 = z.loc[z['Y']==0]
+z1 = z.loc[z['Y']==1]
+plt.scatter(z0['X1'], marker='X', y=z0['X2'], label="positive")
+plt.scatter(z1['X1'], marker='2', y=z1['X2'], label="negative")
+#plt.scatter(X2,y=Y,c='g')
+"""
